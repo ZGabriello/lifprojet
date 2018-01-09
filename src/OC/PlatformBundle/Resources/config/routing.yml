@@ -1,0 +1,18 @@
+oc_platform_homepage:
+    path:     /
+    defaults: { _controller: OCPlatformBundle:Advert:index }
+
+# src/OC/PlatformBundle/Resources/config/routing.yml
+
+accueil:
+    path:     /accueil
+    defaults: { _controller: OCPlatformBundle:Advert:index }
+
+oc_platform_add:
+    path:      /accueil/add
+    defaults: { _controller: OCPlatformBundle:Advert:add }
+
+
+upload_categories:
+    resource: "@OCPlatformBundle/Resources/config/routing/categories.yml"
+    prefix:   /categories

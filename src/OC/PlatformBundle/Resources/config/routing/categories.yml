@@ -1,0 +1,55 @@
+categories_index:
+    path:     /
+    defaults: { _controller: "OCPlatformBundle:Categories:index" }
+    methods:  GET
+
+categories_show:
+    path:     /{id}/show
+    defaults: { _controller: "OCPlatformBundle:Categories:show" }
+    methods:  GET
+    
+categories_new:
+    path:     /new
+    defaults: { _controller: "OCPlatformBundle:Categories:new" }
+    methods:  [GET, POST]
+    requirements:
+        category_id: \d+
+
+categories_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OCPlatformBundle:Categories:edit" }
+    methods:  [GET, POST]
+    requirements:
+        id: \d+
+categories_deleteImage:
+    path:     /{id}/deleteImage
+    defaults: { _controller: "OCPlatformBundle:Categories:deleteImage" }
+    methods:  [POST]
+    requirements:
+        id: \d+
+
+categories_informatique:
+    path:   /informatique
+    defaults: { _controller: "OCPlatformBundle:Categories:informatique" }
+    methods:  GET
+categories_mathematique:
+    path:   /mathematique
+    defaults: { _controller: "OCPlatformBundle:Categories:mathematique" }
+    methods:  GET
+categories_physique:
+    path:   /physique
+    defaults: { _controller: "OCPlatformBundle:Categories:physique" }
+    methods:  GET
+categories_chimie:
+    path:   /chimie
+    defaults: { _controller: "OCPlatformBundle:Categories:chimie" }
+    methods:  GET
+categories_biologie:
+    path:   /biologie
+    defaults: { _controller: "OCPlatformBundle:Categories:biologie" }
+    methods:  GET
+
+categories_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "OCPlatformBundle:Categories:delete" }
+    methods:  DELETE

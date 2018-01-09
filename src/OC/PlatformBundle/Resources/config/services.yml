@@ -1,0 +1,11 @@
+services:
+#    oc_platform.example:
+#        class: OC\PlatformBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    categories_service: 
+        class: OC\PlatformBundle\Services\CategoriesService
+        arguments: [ "@doctrine.orm.default_entity_manager" ]
+    tchat_service: 
+        class: OC\PlatformBundle\Services\TchatService
+        arguments: [ "@doctrine.orm.default_entity_manager" ]

@@ -1,0 +1,19 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block subject %}
+{% autoescape false %}
+{{ 'Confirmez votre inscription sur notre plateforme'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'Bonjour %username%
+
+Merci de cliquer sur le lien suivant afin de confirmer votre inscription sur notre plateforme:
+
+%confirmationUrl%'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+
+A bientôt !
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}{% endblock %}

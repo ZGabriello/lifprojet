@@ -1,0 +1,11 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<h1>Mot de passe oublié</h1>
+<p>
+Un email vous a été envoyé. Il contient un lien sur lequel vous devez cliquer afin de réinitialiser votre mot de passe.
+Si vous n'avez rien reçu, vérifier vos spams ou réessayer.
+</p>
+{% endblock %}

@@ -1,0 +1,31 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block ocplatform_body %}
+      {# On d�finit un sous-titre commun � toutes les pages du bundle, par exemple #}
+    <h1>Accueil</h1>
+    <div class="row">
+       {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+           <p>  Bienvenue sur notre site de partage. Sur ce site vous pouvez partager vos cours et autres documents en rapport mais aussi découvrir les documents partager par les autres utilisateurs. </p> 
+        {% for category in categories %}
+          <div class="col-sm-3">
+          <div class="well">
+           <p> {{ category.pseudo }} </p>
+           <img src="{{ asset('uploads/images/profile-man.jpg') }}" class="img-circle" height="65" width="65" alt="Avatar">
+          </div>
+          </div>
+          <div class="col-sm-9">
+          <div class="well">
+            <object width="500" height="500" data="{{ asset('uploads/images/category/'~category.image) }}">
+            </object>
+          </div>
+          </div>
+        {% endfor %}
+    {% else %}
+    <p> Bienvenue sur notre site de partage. Sur ce site vous pouvez partager vos cours et autres documents en rapport mais aussi découvrir les documents partager par les autres utilisateurs. </p> 
+    <p> Pour voir toutes les fonctionnalités de notre site <a href="{{path('fos_user_registration_register')}}">Rejoignez-nous !</a> </p>
+    {% endif %}
+    </div>
+{% endblock %}

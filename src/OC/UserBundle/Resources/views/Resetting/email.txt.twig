@@ -1,0 +1,19 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block subject %}
+{% autoescape false %}
+{{ 'Recuperer votre mot de passe'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+{% endautoescape %}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'Bonjour %username%
+
+Merci de cliquer sur le lien suivant pour modifier votre mot de passe:
+
+%confirmationUrl%'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}
+
+A bientôt !
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}{% endblock %}

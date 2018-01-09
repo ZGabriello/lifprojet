@@ -1,0 +1,7 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<p>Un email a été envoyé à l'adresse {{ user.email }} .Il contient le lien d'activation de votre compte , cliquez dessus pour nous rejoindre.</p>
+{% endblock fos_user_content %}

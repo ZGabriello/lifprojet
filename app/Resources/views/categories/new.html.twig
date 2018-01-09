@@ -1,0 +1,16 @@
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1> Ajout d'un document :</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-default" value="Ajouter" />
+    {{ form_end(form) }}
+
+    <ul>
+            <a style="text-decoration:none" href="{{ path('categories_index') }}"> Retour </a>
+      
+    </ul>
+{% endblock %}

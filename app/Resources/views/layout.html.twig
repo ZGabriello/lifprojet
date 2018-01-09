@@ -1,0 +1,203 @@
+<!DOCTYPE html">
+<html lang="fr">
+  <head>
+  <title>Lifprojet</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  {% stylesheets '@FOSCommentBundle/Resources/public/css/comments.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+  {% endstylesheets %}
+  
+  <style>    
+    /* Set black background color, white text and some padding */
+    body {
+        background-image:url("background.jpg");
+    }
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    p#footer
+    {
+	margin: 0 ;
+	padding-right: 10px ;
+	line-height: 30px ;
+	text-align: right ;
+    }
+    input.form-control , input[type="submit"] , .btn {
+    border-radius: 0px;
+}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{{path('accueil')}}"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	    <li><a href="{{path('fos_user_change_password')}}"><span class="glyphicon glyphicon-user"></span> Mon Profil</a></li> 
+            <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+	{% else %}
+            <li><a href="{{path('fos_user_registration_register')}}"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
+            <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- corps du site-->      
+      
+<div class="container text-center">    
+  <div class="row">
+    <div class="col-sm-3 well">
+      <div class="well">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <p><a href="{{path('fos_user_change_password')}}"> {{ app.user.username }} </a></p>
+            <img src="{{ asset('uploads/images/profile-man.jpg') }}" class="img-circle" height="65" width="65" alt="Avatar">
+        {% else %}
+            <a href="{{path('fos_user_registration_register')}}"><img src="{{ asset('uploads/images/profile-man.jpg') }}" class="img-circle" height="65" width="65" alt="Avatar"></a>
+        {% endif %}
+      </div>
+      <div class="well">
+        <p><a href="#">Préferences</a></p>
+        <p>
+            <a href="{{path('categories_mathematique')}}"><span class="label label-default">Maths</span> </a>
+          <a href="{{path('categories_informatique')}}"><span class="label label-primary">Informatique</span> </a>
+          <a href="{{path('categories_biologie')}}"><span class="label label-success">Biologie</span> </a>
+          <a href="{{path('categories_physique')}}"><span class="label label-info">Physique</span> </a>
+          <a href="{{path('categories_chimie')}}"><span class="label label-warning">Chimie</span> </a>
+        </p>
+      </div>
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <p><a href="{{ path('categories_new') }}"><span class="glyphicon glyphicon-plus-sign" style="color:green"></span> Upload</a></p>
+        <p><a href="{{ path('categories_index') }}"><span class="glyphicon glyphicon-file" style="color:green"></span> Documents</a></p>
+      {% else %}
+        <p><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-plus-sign" style="color:green"></span> Upload</a></p>
+      {% endif %}
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} 
+      <div id="chat" class="well">
+        
+        <h2>Chat</h2>
+        <ul id="chat-list"  style = "margin-left : 0%;text-align : left;"> {{ render(controller('OCPlatformBundle:Tchat:index', { 'max': 8 })) }}
+ </ul>
+        <textarea id="form-message" placeholder="Votre message..."></textarea>
+        <input type="button" id="form-submit" value="Envoyer"/>
+
+        <script>
+        // This object will be sent everytime you submit a message in the sendMessage function.
+        var clientInformation = {
+        username: "{{ app.user.username }}"
+        // You can add more information in a static object
+        };
+    
+        // START SOCKET CONFIG
+        /**
+         * Note that you need to change the "sandbox" for the URL of your project. 
+         * According to the configuration in Sockets/Chat.php , change the port if you need to.
+         * @type WebSocket
+        */
+        var conn = new WebSocket('ws://localhost:8000');
+
+        conn.onopen = function(e) {
+        console.info("Connection established succesfully");
+        };
+
+        conn.onmessage = function(e) {
+           var data = JSON.parse(e.data);
+           Chat.appendMessage(data.username, data.message);
+        
+            console.log(data);
+        };
+    
+        conn.onerror = function(e){
+         console.error(e);
+        };
+        // END SOCKET CONFIG
+   
+    
+        /// Some code to add the messages to the list element and the message submit.
+        document.getElementById("form-submit").addEventListener("click",function(){
+          var msg = document.getElementById("form-message").value;
+        
+            if(!msg){
+                alert("Please send something on the chat");
+            }
+        
+            Chat.sendMessage(msg);
+            // Empty text area
+            document.getElementById("form-message").value = "";
+        }, false);
+    
+        // Mini API to send a message with the socket and append a message in a UL element.
+        var Chat = {
+            appendMessage: function(username,message){
+                var from;
+            
+                 if(username == clientInformation.username){
+                    from = "{{ app.user.username }}";
+                 }else{
+                   from = username;
+                }
+            
+            // Append List Item
+            document.getElementById("chat-list").innerHTML= document.getElementById("chat-list").innerHTML + '<li><b>' + from + '</b> : ' + message + '</li>';
+      
+        },
+        sendMessage: function(text){
+            clientInformation.message = text;
+            // Send info as JSON
+            conn.send(JSON.stringify(clientInformation));
+            // Add my own message to the list
+            this.appendMessage(clientInformation.username, clientInformation.message);
+        }
+     };
+    function masquer_div(id)
+    {
+        if (document.getElementById(id).style.display == 'none') {
+            document.getElementById(id).style.display = 'block';
+         }
+        else {
+            document.getElementById(id).style.display = 'none';
+        }
+    }
+
+    </script>
+    <br><br>
+    </div>
+    {% endif %}
+    <input type="button"  value=" Messagerie instantanee " onclick="masquer_div('chat'); " />
+   
+    </div>
+    <!-- <div class="col-sm-9"> -->
+      <div class="row">
+        <div class="col-sm-8 well">
+          <div class="panel panel-default text-center well">
+                <img class="img-responsive" src="{{ asset('uploads/images/background.jpg') }}">
+          </div>
+      {% block body%}
+      {%endblock %} 
+    </div>
+  </div>
+  </div>
+<p id="footer">Réalisation par Oussama, Gabriello et Mathieu</p>
+</div>
+</body>
+</html>

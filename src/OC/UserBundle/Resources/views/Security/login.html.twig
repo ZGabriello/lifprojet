@@ -1,0 +1,6 @@
+{% extends "OCUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+<h1 style="font-family: 'Lato'">Connexion</h1>
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+{% endblock fos_user_content %}

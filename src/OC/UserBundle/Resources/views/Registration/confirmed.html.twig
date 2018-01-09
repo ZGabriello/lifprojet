@@ -1,0 +1,21 @@
+
+
+
+{% extends "OCUserBundle::layout.html.twig" %}
+{% block fos_user_content %}
+<div style ="text-align : center; font-size : 25px;">
+
+{{ 'Inscription effectuee'|trans({'%username%': user.username}) }}
+    {% if targetUrl %}
+    <a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a>
+    {% endif %}
+</div>
+<br><br>
+<div style ="text-align : center;">
+Bienvenue <b>{{ app.user.username }}</b> sur notre site de partage de cours en ligne.<br>
+Vous avez désormais accès à tous les documents fournis par la communauté d'étudiants sur notre site.
+Pensez à partager les votres pour faire vivre la plateforme.<br>
+Bonne visite !<br><br>
+<a href={{path('accueil')}} title="Retour à la page d'accueil" accesskey="1">Page d'accueil</a>
+</div>
+{% endblock fos_user_content %}

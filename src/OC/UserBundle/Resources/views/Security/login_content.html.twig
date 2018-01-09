@@ -1,0 +1,60 @@
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}
+</div>
+{% endif %}
+ <div class="container">
+        <form class="form-horizontal" role="form" method="POST" action="{{ path("fos_user_security_check") }}">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <label class="sr-only" for="username">{{ 'Pseudo'|trans }}</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Pseudo" required autofocus>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="sr-only" for="password">{{ 'Mot De Passe'|trans }}</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                            <input type="password" id="password" name="_password" class="form-control" placeholder="Mot de passe"  required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <p> Mauvais mot de passe! </p>    
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="padding-top: .35rem">
+                    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                            <span style="padding-bottom: .15rem">{{ 'Se souvenir de moi'|trans }}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 1rem">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success" id="_submit" name="_submit" value="{{ 'Connexion'|trans }}"><i class="fa fa-sign-in"></i> Connexion</button>
+                    <a class="btn btn-link" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
+                </div>
+            </div>
+        </form>
+    </div>

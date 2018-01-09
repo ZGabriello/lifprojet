@@ -1,0 +1,26 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block ocplatform_body %}
+    <div class="row">
+       {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% for category in categories %}
+          <div class="col-sm-3">
+          <div class="well">
+           <p> {{ category.pseudo }} </p>
+           <img src="{{ asset('uploads/images/profile-man.jpg') }}" class="img-circle" height="65" width="65" alt="Avatar">
+          </div>
+          </div>
+            <object width="500" height="500" data="{{ asset('uploads/images/category/'~category.image) }}">
+            </object>
+            <br> </br>
+            <a href="{{ path('categories_edit', { 'id': category.id }) }}" style="text-align:center"> Modifier </a>
+        {% endfor %}
+    {% else %}
+    <p> Bienvenue sur notre site de partage. Sur ce site vous pouvez partager vos cours et autres documents en rapport mais aussi découvrir les documents partager par les autres utilisateurs. </p> 
+    <p> Pour voir toutes les fonctionnalités de notre site <a href="{{path('fos_user_registration_register')}}">Rejoignez-nous !</a> </p>
+    {% endif %}
+    </div>
+{% endblock %}

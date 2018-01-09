@@ -1,0 +1,214 @@
+body
+{
+	margin: 10px 7%;
+	padding: 0;
+	text-align: center;
+	font: 0.8em "Trebuchet MS", helvetica, sans-serif;
+	background: #f2f2f2;
+}
+
+div#conteneur
+{
+	margin: 0 auto;
+	text-align: center;
+	border-bottom: 2px solid #727071;
+	border-left: 2px solid #727071;
+	border-right: 2px solid #727071;
+	background: #fff;
+}
+
+h1#header
+{
+	height: 258px ;
+	margin: 0 ;
+	background: url(apple.jpg) no-repeat left top ;
+}
+
+h1#header a
+{
+	width: 400px ;
+	height: 70px ;
+	display: block ;
+	background: url(title.gif) no-repeat ;
+	position: relative ;
+	left: 350px ;
+	top: 15px ;
+	text-indent: -5000px ;
+}
+
+
+ul#menu
+{
+	height: 55px;
+	margin: 0;
+	padding: 0;
+	background: #423d3d;
+	list-style-type: none;
+	-webkit-box-shadow: 0px 8px 19px -4px #897f7f;
+}
+
+ul#notif
+{
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	background: #57585a;
+	list-style-type: none;
+	-webkit-box-shadow: 0px 8px 19px -4px #897f7f;
+}
+
+ul#notif li
+{
+	float: left ;
+	text-align: center ;
+	height: 40px ;
+	font: 500 1em "Open Sans", Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif, Arial, "Helvetica Neue", Helvetica, "Bitstream Vera Sans", sans-serif;
+}
+
+ul#notif li a
+{
+	width: 130px;
+	line-height: 37px;
+	font-size: 1.1em;
+	letter-spacing: 2px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	border-right: 2px solid #3e3d3b;
+	border-left: 2px solid #727071;
+	height: 40px;
+}
+		
+ul#notif li a:hover
+{
+	background: #57585a;
+}
+ul#menu li
+{
+	float: left ;
+	text-align: center ;
+	height: 55px ;
+	font: 500 1em "Open Sans", Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif, Arial, "Helvetica Neue", Helvetica, "Bitstream Vera Sans", sans-serif;
+}
+
+ul#menu li a
+{
+	width: 130px ;
+	line-height: 55px ;
+	font-size: 1.6em ;
+	letter-spacing: 2px ;
+	color: #fff ;
+	display: block ;
+	text-decoration: none ;
+	border-right: 2px solid #242322;
+	border-left: 2px solid #727071;
+	height: 55px;
+}
+
+ul#menu li a:hover
+{
+	background: #57585a;
+}
+
+div#menu_p
+{
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	max-width: 670px;
+}
+
+div#containerMenu
+{
+	background: #403e3f;
+	border-bottom: 5px solid cadetblue;
+}
+
+div#containerNotif
+{
+	background: #57585a;
+	border-bottom: 3px solid cadetblue;	
+}
+
+div#notif_p
+{
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	max-width: 403px;
+}
+
+div#contenu
+{
+	padding: 0 25px 0 100px ;
+	background: url(bg_page.gif) no-repeat 15px 15px ;
+}
+
+div#contenu h2
+{
+	padding-left: 25px ;
+	line-height: 25px ;
+	font-size: 1.4em ;
+	background: url(little_apple.gif) no-repeat left bottom ;
+	color: #9b2 ;
+	border-bottom: 1px solid #9b2 ;
+}
+
+div#contenu h3
+{
+	margin-left: 15px ;
+	padding-left: 5px ;
+	border-bottom: 1px solid #9b2 ;
+	border-left: 3px solid #9b2 ;
+	color: #9b2 ;
+}
+
+div#contenu p
+{
+	text-align: justify ;
+	text-indent: 2em ;
+	line-height: 1.7em ;
+}
+
+div#contenu a
+{
+	color: #8a0 ;
+}
+
+div#contenu a:hover
+{
+	color: #9b2 ;
+}
+
+p#footer
+{
+	margin: 0 ;
+	padding-right: 10px ;
+	line-height: 30px ;
+	text-align: right ;
+	color: #8a0 ;
+}
+
+pre
+{
+	overflow: auto ;
+	background: #dea ;
+	border: 2px solid #9b2 ;
+	padding: 5px 0 0 5px ;
+	font-size: 1.2em ;
+}
+
+* html pre
+{
+	width: 636px ;
+}
+
+pre span
+{
+	color: #560 ;
+}
+
+pre span.comment
+{
+	color: #b30000 ;
+}
